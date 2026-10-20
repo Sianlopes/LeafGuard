@@ -24,6 +24,10 @@ def main():
         path = ROOT / "data/processed" / name
         if path.exists():
             files.append(path)
+    for relative in ("NOTICE.md", "reports/project_report.md", "reports/validation.md", "reports/ood_provenance.json", "reports/preparation_audit.json", "reports/integration.json", "reports/app_verification.json"):
+        path = ROOT / relative
+        if path.exists():
+            files.append(path)
     with zipfile.ZipFile(args.output, "w", zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(set(files)):
             archive.write(path, path.relative_to(ROOT).as_posix())

@@ -443,8 +443,14 @@ def load_manifest(directory):
     metadata = read_json(directory / "metadata.json")
     if sha256(path) != metadata["manifest_sha256"]:
         raise ValueError("Manifest changed after preparation; prepare it again.")
+    classes = read_json(directory / "class_names.json")
+    if classes != metadata.get("classes"):
+        raise ValueError("Class mapping changed after preparation; prepare the dataset again.")
     with path.open(newline="", encoding="utf-8") as handle:
-        return list(csv.DictReader(handle)), read_json(directory / "class_names.json"), metadata
+        rows = list(csv.DictReader(handle))
+    if any(not 0 <= int(row["class_index"]) < len(classes) or classes[int(row["class_index"])] != row["label"] for row in rows):
+        raise ValueError("Manifest labels do not match the prepared class mapping.")
+    return rows, classes, metadata
 
 
 def main():

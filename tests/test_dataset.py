@@ -73,6 +73,16 @@ def test_manifest_tampering_detected(local_data, tmp_path):
         load_manifest(output)
 
 
+def test_reordered_class_mapping_refused(local_data, tmp_path):
+    root, _ = local_data
+    output = tmp_path / "processed"
+    prepare_dataset(root, output)
+    classes = json.loads((output / "class_names.json").read_text())
+    write_json(output / "class_names.json", list(reversed(classes)))
+    with pytest.raises(ValueError, match="Class mapping changed"):
+        load_manifest(output)
+
+
 def test_group_lookup_uses_source_metadata():
     mapping = {"rs_early.b 7557": ["Potato___Early_blight:::115.0"]}
     assert leaf_identifier("uuid___RS_Early.B 7557.JPG", "Potato___Early_blight", mapping) == "Potato___Early_blight:::115.0"
