@@ -1,0 +1,60 @@
+{
+  "pages": {
+    "app.py": "passed",
+    "pages/1_Detect_Disease.py": "passed",
+    "pages/2_Supported_Plants.py": "passed",
+    "pages/3_Model_Performance.py": "passed",
+    "pages/4_About.py": "passed"
+  },
+  "no_prediction_before_analysis": true,
+  "example_analysis": {
+    "plant": "Apple",
+    "disease": "Black rot",
+    "label": "Apple___Black_rot",
+    "confidence": 0.9958753651087838,
+    "top_three": [
+      {
+        "label": "Apple___Black_rot",
+        "plant": "Apple",
+        "disease": "Black rot",
+        "confidence": 0.9958753651087838
+      },
+      {
+        "label": "Potato___Late_blight",
+        "plant": "Potato",
+        "disease": "Late blight",
+        "confidence": 0.0028399422609352337
+      },
+      {
+        "label": "Apple___healthy",
+        "plant": "Apple",
+        "disease": "healthy",
+        "confidence": 0.0005621824731113025
+      }
+    ],
+    "uncertain": false,
+    "message": "AI-based suggestion; confirm with an agricultural specialist.",
+    "calibrated": true,
+    "rejection_validated": true,
+    "threshold": 0.8,
+    "embedding_distance": 0.22331011295318604,
+    "disease_info": {
+      "disease_name": "Apple black rot",
+      "description": "A fungal disease that can affect leaves, fruit and woody tissues.",
+      "symptoms": [
+        "Circular leaf lesions with darker borders and lighter centers.",
+        "Fruit decay or dead and cankered branches."
+      ],
+      "prevention": [
+        "Remove mummified fruit and dead infected wood using locally recommended sanitation practices.",
+        "Inspect trees and avoid unnecessary bark injury."
+      ],
+      "sources": [
+        "https://apples.extension.org/black-rot-of-apple/"
+      ]
+    },
+    "predicted_index": 1,
+    "model": "efficientnet"
+  },
+  "gradcam_toggle_without_exception": true
+}

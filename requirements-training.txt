@@ -1,0 +1,3 @@
+# Optional CPU acceleration for frozen-backbone feature extraction only.
+-r requirements.txt
+openvino==2025.4.1

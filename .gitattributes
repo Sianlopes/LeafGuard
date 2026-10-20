@@ -1,0 +1,8 @@
+* text=auto
+# Preserve the exact bytes validated by the model bundle's SHA-256 contracts.
+models/** -text
+*.keras binary
+*.npz binary
+*.png binary
+*.zip binary
+*.bat text eol=crlf

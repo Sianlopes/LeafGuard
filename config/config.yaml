@@ -1,0 +1,17 @@
+seed: 42
+image_size: 224
+batch_size: 32
+epochs: 15
+fine_tune_epochs: 10
+learning_rate: 0.001
+fine_tune_learning_rate: 0.00001
+unfreeze_layers: 30
+dataset_path: data/raw
+processed_path: data/processed
+model_dir: models/efficientnet
+validation_fraction: 0.15
+calibration_fraction: 0.15
+test_fraction: 0.20
+uncertainty_threshold: 0.80
+group_policy: publisher
+cnn_variant: compact

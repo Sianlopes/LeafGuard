@@ -1,0 +1,77 @@
+{
+  "seed": 42,
+  "collections": [
+    {
+      "name": "UCI Leaf",
+      "url": "https://archive.ics.uci.edu/dataset/288/leaf",
+      "doi": "10.24432/C53C78",
+      "license": "CC BY 4.0",
+      "archive_sha256": "9d951760ac7609f5e824b2d996d8f1ab09d06febb67653a2abb84065ee379522",
+      "tuning_species": [
+        "12. Celtis sp",
+        "13. Corylus avellana",
+        "18. Papaver sp",
+        "19. Polypodium vulgare",
+        "2. Salix atrocinerea",
+        "20. Pinus sp",
+        "28. Magnolia soulangeana",
+        "29. Buxus sempervirens",
+        "3. Populus nigra",
+        "30. Urtica dioica",
+        "31. Podocarpus sp",
+        "33. Hydrangea sp",
+        "35. Magnolia grandiflora",
+        "36. Geranium sp",
+        "37. Aesculus californica",
+        "38. Chelidonium majus",
+        "4. Alnus sp",
+        "5. Quercus robur",
+        "6. Crataegus monogyna"
+      ],
+      "audit_species": [
+        "1. Quercus suber",
+        "10. Tilia tomentosa",
+        "11. Acer palmaturu",
+        "14. Castanea sativa",
+        "15. Populus alba",
+        "16. Acer negundo",
+        "17. Taxus bacatta",
+        "21. Fraxinus sp",
+        "22. Primula vulgaris",
+        "23. Erodium sp",
+        "24. Bougainvillea sp",
+        "25. Arisarum vulgare",
+        "26. Euonymus japonicus",
+        "27. Ilex perado ssp azorica",
+        "32. Acca sellowiana",
+        "34. Pseudosasa japonica",
+        "39. Schinus terebinthifolius",
+        "7. Ilex aquifolium",
+        "8. Nerium oleander",
+        "9. Betula pubescens"
+      ]
+    },
+    {
+      "name": "CIFAR-10",
+      "repository": "uoft-cs/cifar10",
+      "revision": "0b2714987fa478483af9968de7c934580d0bb9a2",
+      "hashes": {
+        "train": "8428b53a88a11ac374111006708df51469e315a22ac6d66470afd9c78d2ae883",
+        "test": "841389e6f2d64f28bf17310e430aebac20ec3ba611a3c5e231dc93c645ce84de"
+      }
+    }
+  ],
+  "images": 931,
+  "split_counts": {
+    "tune": {
+      "unsupported_leaves": 208,
+      "unrelated_objects": 250
+    },
+    "audit": {
+      "unsupported_leaves": 223,
+      "unrelated_objects": 250
+    }
+  },
+  "separation": "Disjoint unsupported species; CIFAR source train versus test; RGB-only specimens; exact and conservative near-duplicate rejection across both collections.",
+  "limitations": "Public source data do not provide capture-session IDs. These audits measure rejection on disjoint supplied images and species, not universal field OOD detection."
+}

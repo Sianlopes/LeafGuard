@@ -1,0 +1,32 @@
+{
+  "directory": "data/cache/features/4f9c62b3a8c3-0177f8fa99d5-224-v2-42-openvino",
+  "contract": {
+    "manifest_sha256": "4f9c62b3a8c38e594e067aa748e0976ca0205eba29c7e554206f9ed2605c107c",
+    "embedding_fingerprint": "0177f8fa99d563a6cfdb7e490f814f1ab6cdb54467aa2b7e43a8fe3c268f7fa0",
+    "image_size": 224,
+    "views": 2,
+    "seed": 42,
+    "backend": "openvino",
+    "images": 53447,
+    "dimension": 1280,
+    "augmentation": "flip-horizontal-vertical,rotation-.08,zoom-.1,contrast-.1,clip-0-255"
+  },
+  "files": {
+    "original": {
+      "name": "original.npy",
+      "sha256": "40e5c62fcd20532313b4811fd6dd9b8eeccb20ebfc6fc2316460338bde388d4a"
+    },
+    "augmented_1": {
+      "name": "augmented_1.npy",
+      "sha256": "18bfc6ede16f8b58b22bfe426de04cb17cfa4439aa5e1d8e765c7e2189da9c36"
+    }
+  },
+  "accelerator_agreement": {
+    "maximum_absolute_error": 7.3909759521484375e-06,
+    "mean_absolute_error": 4.230429908602673e-07,
+    "rtol": 0.002,
+    "atol": 0.002
+  },
+  "classifier_training": "TensorFlow/Keras on fixed pretrained embeddings",
+  "fine_tuning": false
+}

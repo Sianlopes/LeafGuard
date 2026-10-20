@@ -1,0 +1,30 @@
+{
+  "source": "mohanty/PlantVillage",
+  "revision": "9e97599868962bd0079b8db4b7f1efa9185fa1e7",
+  "license": "CC BY-SA 3.0",
+  "credit": "Mohanty, Hughes and Salathe (2016)",
+  "selection": "First manifest test image in each predefined category; selected before model evaluation",
+  "images": [
+    {
+      "name": "Apple leaf",
+      "file": "apple.jpg",
+      "source_filename": "fdcf5330-6e9d-4fde-9284-1ac4e7b0fa30___JR_FrgE.S 2981.JPG",
+      "source_label": "Apple___Black_rot",
+      "source_split": "test"
+    },
+    {
+      "name": "Corn leaf",
+      "file": "corn.jpg",
+      "source_filename": "d9d14fdf-8f10-4023-8caf-c6ed6fd77b0f___RS_NLB 4003.JPG",
+      "source_label": "Corn_(maize)___Northern_Leaf_Blight",
+      "source_split": "test"
+    },
+    {
+      "name": "Tomato leaf",
+      "file": "tomato.jpg",
+      "source_filename": "45fc3f1c-6ccc-4ffd-a0a9-f53cbe4e71a1___GH_HL Leaf 206.1.JPG",
+      "source_label": "Tomato___healthy",
+      "source_split": "test"
+    }
+  ]
+}

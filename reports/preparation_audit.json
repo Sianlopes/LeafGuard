@@ -1,0 +1,21 @@
+{
+  "images": 53447,
+  "classes": 38,
+  "splits": {
+    "train": 29941,
+    "test": 10709,
+    "validation": 6397,
+    "calibration": 6400
+  },
+  "cross_split_groups": {
+    "leaf_id": 0,
+    "source_group": 0,
+    "group_id": 0,
+    "pixel_sha256": 0
+  },
+  "exclusion_reasons": {
+    "Leaf/duplicate group also occurs in test; lower-priority observation purged.": 858
+  },
+  "complete_physical_leaf_verification": false,
+  "limitation": "Complete physical-leaf separation cannot be verified for source-image groups without physical-leaf metadata. Perceptual hashing detects near-identical views, not every view of the same leaf."
+}

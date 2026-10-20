@@ -1,0 +1,191 @@
+{
+  "healthy": {
+    "disease_name": "Healthy category",
+    "description": "The model associates this image with a healthy training category. This does not rule out early infection, pests, nutrient stress or problems outside the supported categories.",
+    "symptoms": ["No supported disease pattern was selected; inspect the whole plant as well as this leaf."],
+    "prevention": ["Continue regular observation and use crop-appropriate watering, spacing and hygiene.", "Seek local agricultural advice if symptoms persist or spread."],
+    "sources": []
+  },
+  "Apple___Apple_scab": {
+    "disease_name": "Apple scab",
+    "description": "A fungal disease affecting apple leaves and fruit, favored by wet conditions.",
+    "symptoms": ["Olive to dark leaf spots, sometimes with a velvety surface.", "Leaf distortion or early leaf fall."],
+    "prevention": ["Manage fallen infected leaves.", "Choose locally suitable resistant cultivars."],
+    "sources": ["https://ipm.ucanr.edu/home-and-landscape/apple-and-pear-scab/"]
+  },
+  "Apple___Black_rot": {
+    "disease_name": "Apple black rot",
+    "description": "A fungal disease that can affect leaves, fruit and woody tissues.",
+    "symptoms": ["Circular leaf lesions with darker borders and lighter centers.", "Fruit decay or dead and cankered branches."],
+    "prevention": ["Remove mummified fruit and dead infected wood using locally recommended sanitation practices.", "Inspect trees and avoid unnecessary bark injury."],
+    "sources": ["https://apples.extension.org/black-rot-of-apple/"]
+  },
+  "Apple___Cedar_apple_rust": {
+    "disease_name": "Cedar apple rust",
+    "description": "A rust fungus alternating between apple relatives and juniper hosts.",
+    "symptoms": ["Yellow to orange-red leaf spots.", "Small dark dots above spots and tube-like structures below."],
+    "prevention": ["Use resistant apple cultivars where available.", "Review nearby juniper hosts with a local adviser; separation can reduce exposure."],
+    "sources": ["https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/yard-and-garden-problems/cedar-apple-rust"]
+  },
+  "Cherry_(including_sour)___Powdery_mildew": {
+    "disease_name": "Cherry powdery mildew",
+    "description": "A fungal disease producing powdery growth on susceptible tissues.",
+    "symptoms": ["White or gray powder-like growth on leaves.", "Distorted young foliage or affected shoots."],
+    "prevention": ["Monitor susceptible new growth.", "Use locally appropriate cultural management and seek guidance before treatment."],
+    "sources": ["https://ipm.ucanr.edu/home-and-landscape/powdery-mildew-on-fruits-and-berries/"]
+  },
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+    "disease_name": "Corn gray leaf spot",
+    "description": "A fungal foliar disease favored by extended humidity and infected corn residue.",
+    "symptoms": ["Gray or tan rectangular lesions bounded by leaf veins.", "Small early spots that enlarge and merge."],
+    "prevention": ["Choose resistant hybrids.", "Use appropriate crop rotation and residue management."],
+    "sources": ["https://extension.umn.edu/agriculture/crop-production/corn/gray-leaf-spot-on-corn"]
+  },
+  "Corn_(maize)___Common_rust_": {
+    "disease_name": "Corn common rust",
+    "description": "A fungal rust that forms spore pustules on corn foliage.",
+    "symptoms": ["Rust-brown elongated pustules on both leaf surfaces.", "Pustules darken with age; severe infection may yellow leaves."],
+    "prevention": ["Select resistant hybrids.", "Scout leaves during favorable cool, wet weather."],
+    "sources": ["https://extension.umn.edu/agriculture/crop-production/corn/common-rust-on-corn"]
+  },
+  "Corn_(maize)___Northern_Leaf_Blight": {
+    "disease_name": "Northern corn leaf blight",
+    "description": "A fungal disease causing elongated necrotic lesions on corn leaves.",
+    "symptoms": ["Long canoe-shaped gray-green to tan lesions.", "Larger areas of dead foliage when lesions join."],
+    "prevention": ["Choose resistant hybrids and appropriate rotations.", "Assess residue and local disease history with an extension adviser."],
+    "sources": ["https://extension.umn.edu/agriculture/crop-production/corn/northern-corn-leaf-blight"]
+  },
+  "Grape___Black_rot": {
+    "disease_name": "Grape black rot",
+    "description": "A fungal disease affecting green tissues and fruit; infected mummified berries can carry inoculum.",
+    "symptoms": ["Round brown leaf spots with dark margins and small black dots.", "Berries shrivel into dark mummies."],
+    "prevention": ["Remove mummified fruit and infected prunings before new growth.", "Consider resistant varieties suited to the area."],
+    "sources": ["https://extension.psu.edu/grape-disease-black-rot"]
+  },
+  "Grape___Esca_(Black_Measles)": {
+    "disease_name": "Grape esca / black measles",
+    "description": "A complex of wood-associated fungal diseases with variable leaf and fruit symptoms.",
+    "symptoms": ["Interveinal red or yellow striping that becomes necrotic.", "Dark spots may occur on berries; symptoms vary between years."],
+    "prevention": ["Use clean planting material.", "Discuss pruning-wound protection and trunk-disease management with a viticulture specialist."],
+    "sources": ["https://ipm.ucanr.edu/agriculture/grape/esca-black-measles/"]
+  },
+  "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+    "disease_name": "Grape leaf blight / Isariopsis leaf spot",
+    "description": "A fungal leaf disease associated with Pseudocercospora vitis, also known as Isariopsis clavispora. Older leaves are often affected in warm, humid conditions.",
+    "symptoms": ["Irregular reddish-brown spots that darken, sometimes surrounded by a yellow or pale-green halo.", "Brown tissue and fungal structures may be visible on the lower leaf surface."],
+    "prevention": ["Monitor mature leaves during humid weather and document changes for a grape disease adviser.", "Confirm the cause with a local agricultural specialist before choosing disease-specific management."],
+    "sources": ["https://www.apsnet.org/edcenter/resources/commonnames/Pages/Grape.aspx", "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1012979/1/ManualdeDoencasFungicasdaVideira.pdf"]
+  },
+  "Orange___Haunglongbing_(Citrus_greening)": {
+    "disease_name": "Huanglongbing / citrus greening",
+    "description": "A serious bacterial citrus disease associated with psyllid vectors. An image cannot confirm infection.",
+    "symptoms": ["Asymmetric blotchy yellow mottling on leaves.", "Small, irregularly shaped fruit and decline of growth."],
+    "prevention": ["Obtain clean nursery stock and monitor psyllids.", "Seek local plant-health confirmation and follow applicable guidance on moving citrus material."],
+    "sources": ["https://ipm.ucanr.edu/agriculture/citrus/huanglongbing/"]
+  },
+  "Peach___Bacterial_spot": {
+    "disease_name": "Peach bacterial spot",
+    "description": "A bacterial disease of stone fruits that affects foliage, shoots and fruit.",
+    "symptoms": ["Small angular, water-soaked leaf spots whose centers may fall out.", "Severe infection can yellow leaves; fruit may become pitted or cracked."],
+    "prevention": ["Choose locally suitable resistant peach cultivars.", "Ask a local fruit extension specialist to confirm the cause and advise on orchard management."],
+    "sources": ["https://yardandgarden.extension.iastate.edu/encyclopedia/bacterial-spot-stonefruit-trees"]
+  },
+  "Pepper,_bell___Bacterial_spot": {
+    "disease_name": "Pepper bacterial spot",
+    "description": "A bacterial disease that can spread through infected planting material and splashing water.",
+    "symptoms": ["Small dark or water-soaked leaf spots.", "Lesions can merge and affected leaves may drop."],
+    "prevention": ["Use disease-free seed and transplants.", "Reduce foliage wetness and avoid handling plants while wet."],
+    "sources": ["https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/bacterial-spot-of-tomato-and-pepper"]
+  },
+  "Potato___Early_blight": {
+    "disease_name": "Potato early blight",
+    "description": "A fungal disease often beginning on older foliage.",
+    "symptoms": ["Brown leaf spots with concentric rings.", "Yellowing around lesions and eventual leaf death."],
+    "prevention": ["Reduce prolonged foliage wetness.", "Use rotation, sanitation and crop-appropriate nutrition."],
+    "sources": ["https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/early-blight-in-tomato-and-potato"]
+  },
+  "Potato___Late_blight": {
+    "disease_name": "Potato late blight",
+    "description": "A potentially fast-spreading disease caused by the water mold Phytophthora infestans.",
+    "symptoms": ["Irregular olive-brown, water-soaked leaf lesions.", "White growth may appear in humid conditions; tubers can also be affected."],
+    "prevention": ["Use healthy planting material and manage volunteer plants.", "Monitor local alerts and seek prompt expert confirmation of suspected outbreaks."],
+    "sources": ["https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/late-blight"]
+  },
+  "Squash___Powdery_mildew": {
+    "disease_name": "Squash powdery mildew",
+    "description": "A common fungal disease of cucurbit foliage.",
+    "symptoms": ["White powder-like patches on leaves or petioles.", "Affected foliage may yellow and die early."],
+    "prevention": ["Choose resistant varieties when suitable.", "Monitor foliage from vegetative growth through fruiting."],
+    "sources": ["https://ipm.ucanr.edu/agriculture/cucurbits/powdery-mildew/"]
+  },
+  "Strawberry___Leaf_scorch": {
+    "disease_name": "Strawberry leaf scorch",
+    "description": "A fungal leaf disease that can be difficult to distinguish from other strawberry leaf spots.",
+    "symptoms": ["Numerous dark purplish spots and scorched-looking foliage."],
+    "prevention": ["Use healthy plants and manage infected leaf debris.", "Provide appropriate spacing and seek confirmation when leaf symptoms overlap."],
+    "sources": ["https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-strawberries-in-the-home-garden", "https://extension.umn.edu/agriculture/specialty-crops/commercial-fruit-production/strawberry-farming/strawberry-diseases-in-minnesota"]
+  },
+  "Tomato___Bacterial_spot": {
+    "disease_name": "Tomato bacterial spot",
+    "description": "A bacterial disease affecting tomato leaves and fruit.",
+    "symptoms": ["Small dark leaf lesions, sometimes with yellow halos.", "Fruit may develop raised or corky spots."],
+    "prevention": ["Use healthy seed and transplants.", "Reduce splashing and avoid working with wet foliage."],
+    "sources": ["https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/bacterial-spot-of-tomato-and-pepper"]
+  },
+  "Tomato___Early_blight": {
+    "disease_name": "Tomato early blight",
+    "description": "A fungal disease commonly beginning on lower, older leaves.",
+    "symptoms": ["Brown target-like lesions with concentric rings.", "Yellowing around lesions and progressive loss of affected leaves."],
+    "prevention": ["Improve airflow, use mulch and water at the base.", "Rotate crops and manage infected residue."],
+    "sources": ["https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/early-blight-in-tomato-and-potato"]
+  },
+  "Tomato___Late_blight": {
+    "disease_name": "Tomato late blight",
+    "description": "A rapidly spreading disease caused by a water mold, favored by cool, wet conditions.",
+    "symptoms": ["Irregular water-soaked lesions that turn brown.", "White sporulation may be visible in humid weather; stems and fruit may be affected."],
+    "prevention": ["Inspect transplants and monitor local disease alerts.", "Reduce prolonged leaf wetness and seek prompt agricultural advice."],
+    "sources": ["https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/late-blight"]
+  },
+  "Tomato___Leaf_Mold": {
+    "disease_name": "Tomato leaf mold",
+    "description": "A fungal disease often associated with humid greenhouses and high tunnels.",
+    "symptoms": ["Pale yellow patches on upper leaf surfaces.", "Olive-brown velvety growth below corresponding patches."],
+    "prevention": ["Ventilate and space plants to reduce humidity.", "Use drip irrigation and clean up crop residues."],
+    "sources": ["https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/tomato-leaf-mold"]
+  },
+  "Tomato___Septoria_leaf_spot": {
+    "disease_name": "Tomato Septoria leaf spot",
+    "description": "A fungal leaf spot often beginning on lower tomato leaves.",
+    "symptoms": ["Small round lesions with pale centers and dark margins.", "Tiny dark fungal structures may appear inside lesions."],
+    "prevention": ["Mulch and water at the plant base to reduce splash.", "Improve spacing and remove affected crop debris appropriately."],
+    "sources": ["https://www.extension.umd.edu/resource/septoria-leaf-spot-tomatoes"]
+  },
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "disease_name": "Two-spotted spider mite damage",
+    "description": "Mite feeding damage, rather than a pathogen disease, included as a PlantVillage category.",
+    "symptoms": ["Fine pale stippling, yellowing or bronzing.", "Fine webbing and mites may occur beneath leaves."],
+    "prevention": ["Avoid water stress and preserve natural enemies.", "Inspect leaf undersides and confirm mites before taking action."],
+    "sources": ["https://ipm.ucanr.edu/home-and-landscape/spider-mites/"]
+  },
+  "Tomato___Target_Spot": {
+    "disease_name": "Tomato target spot",
+    "description": "A fungal disease caused by Corynespora cassiicola; leaf symptoms overlap with other spots.",
+    "symptoms": ["Small dark lesions expanding to pale centers with darker rings.", "Lesions may merge, and fruit can develop pitted lesions."],
+    "prevention": ["Use crop sanitation and reduce conditions favoring prolonged leaf wetness.", "Confirm the cause before selecting disease-specific management."],
+    "sources": ["https://ask.ifas.ufl.edu/publication/PP351"]
+  },
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "disease_name": "Tomato yellow leaf curl virus",
+    "description": "A viral disease spread by whiteflies and movement of infected plants.",
+    "symptoms": ["Small upward-curled leaves with yellow margins or interveinal yellowing.", "Stunted growth and reduced fruit set."],
+    "prevention": ["Use clean transplants and locally suitable resistant varieties.", "Monitor whiteflies and manage volunteer hosts with local IPM guidance."],
+    "sources": ["https://ipm.ucanr.edu/agriculture/tomato/tomato-yellow-leaf-curl/"]
+  },
+  "Tomato___Tomato_mosaic_virus": {
+    "disease_name": "Tomato mosaic virus",
+    "description": "A viral disease requiring laboratory confirmation because visible symptoms overlap with other causes.",
+    "symptoms": ["Alternating light and dark green leaf mottling.", "Distorted leaves and stunting may occur."],
+    "prevention": ["Use clean seed and transplants.", "Practice hand and tool hygiene to reduce mechanical spread."],
+    "sources": ["https://extension.umn.edu/agriculture/specialty-crops/vegetable-farming/disease-management/tomato-viruses"]
+  }
+}

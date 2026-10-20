@@ -1,0 +1,17 @@
+{
+  "test_accuracy": 0.9677841068260342,
+  "precision": 0.9574249288026501,
+  "recall": 0.9640145301912991,
+  "f1": 0.9604057243020506,
+  "macro_f1": 0.9604057243020506,
+  "weighted_f1": 0.9677800224314991,
+  "test_images": 10709,
+  "averaging": "macro for precision/recall/f1",
+  "model": "efficientnet",
+  "manifest_sha256": "4f9c62b3a8c38e594e067aa748e0976ca0205eba29c7e554206f9ed2605c107c",
+  "model_sha256": "847d17ffe4296129d78e8b00dce4d71ef3d2ce3e09dfb0c7a8ed4a57147a274a",
+  "checkpoint_selection": "minimum validation loss; test not used for selection",
+  "evaluation_backend": "Frozen cached embeddings plus exact TensorFlow classifier; see feature_cache.json for numerical agreement audit",
+  "complete_physical_leaf_verification": false,
+  "split_limitation": "Complete physical-leaf separation cannot be verified for source-image groups without physical-leaf metadata. Perceptual hashing detects near-identical views, not every view of the same leaf."
+}

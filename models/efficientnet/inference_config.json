@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "architecture": "efficientnet",
+  "cnn_variant": null,
+  "image_size": 224,
+  "color_mode": "RGB",
+  "pixel_range": [
+    0,
+    255
+  ],
+  "resize": "PIL_BILINEAR",
+  "scaling": "embedded_in_model",
+  "cam_layer": "top_activation",
+  "embedding_layer": "embedding",
+  "uncertainty_threshold": 0.8,
+  "manifest_sha256": "4f9c62b3a8c38e594e067aa748e0976ca0205eba29c7e554206f9ed2605c107c",
+  "processed_directory": "data/processed",
+  "classes_sha256": "f8988b3e341acb2e461ea8dd1caf9d3492a925405a32bcc57a79113237842aa4",
+  "model_sha256": "847d17ffe4296129d78e8b00dce4d71ef3d2ce3e09dfb0c7a8ed4a57147a274a"
+}

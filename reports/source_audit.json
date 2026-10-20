@@ -1,0 +1,23 @@
+{
+  "revision": "9e97599",
+  "source_counts": {
+    "train": 43596,
+    "test": 10709
+  },
+  "source_classes": 38,
+  "unresolved_leaf_ids": 11790,
+  "examples": [
+    "Missing or ambiguous physical leaf metadata: Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/150ed8d9-abf5-4811-b976-8878b2d0048d___RS_GLSp 7321.JPG. Supply a verified groups CSV.",
+    "Missing or ambiguous physical leaf metadata: Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/346e5b39-b83e-4b5f-a02b-bc01fc230842___RS_GLSp 4311.JPG. Supply a verified groups CSV.",
+    "Missing or ambiguous physical leaf metadata: Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/87e9e4cd-55fd-4437-9f93-84cd25e744c2___RS_GLSp 4504.JPG. Supply a verified groups CSV.",
+    "Missing or ambiguous physical leaf metadata: Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/ab76d00b-1082-49bf-9499-ca0640946ad9___RS_GLSp 9369.JPG. Supply a verified groups CSV.",
+    "Missing or ambiguous physical leaf metadata: Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/a95a00bc-f6af-4006-beda-81f8629cf106___RS_GLSp 9308.JPG. Supply a verified groups CSV.",
+    "Missing or ambiguous physical leaf metadata: Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/2e123765-bd5f-461e-a658-7b4c5c4f5564___RS_GLSp 4594.JPG. Supply a verified groups CSV.",
+    "Missing or ambiguous physical leaf metadata: Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/6f4b40eb-6d14-4f30-9ef8-89f85bd841fd___RS_GLSp 4426.JPG. Supply a verified groups CSV.",
+    "Missing or ambiguous physical leaf metadata: Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/d7a856cb-b30e-4c26-9814-ce6ca9a9f188___RS_GLSp 4676.JPG. Supply a verified groups CSV.",
+    "Missing or ambiguous physical leaf metadata: Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/f19f6395-fe3b-427f-b888-49326cafe697___RS_GLSp 4329.JPG. Supply a verified groups CSV.",
+    "Missing or ambiguous physical leaf metadata: Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot/de66a37b-002d-4e21-8f4a-a34976b74892___RS_GLSp 9283.JPG. Supply a verified groups CSV."
+  ],
+  "cross_split_leaf_groups": 213,
+  "scope": "Public metadata only; no image decode, training or accuracy evaluation."
+}
