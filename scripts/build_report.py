@@ -36,6 +36,12 @@ def main():
     figures = "\n\n".join(f"![{name} {title}](figures/{name}/{filename}.png)" for name in metrics for filename, title in (("accuracy", "training accuracy"), ("val_accuracy", "validation accuracy"), ("loss", "training loss"), ("val_loss", "validation loss"), ("confusion_matrix", "confusion matrix"), ("per_class_recall", "per-class recall")))
     if (ROOT / "reports/figures/comparison.png").exists():
         figures = "![Model comparison](figures/comparison.png)\n\n" + figures
+    timings = []
+    for name in metrics:
+        history = read_json(ROOT / f"models/{name}/history.json")
+        if history.get("epoch_seconds"):
+            timings.append(f"{name}: {sum(history['epoch_seconds']) / 60:.2f} minutes")
+    timing_text = "; ".join(timings) or "Not recorded by the original run"
     report = f"""# Multi-Plant Leaf Disease Detection Using Deep Learning
 
 ## Abstract
@@ -152,11 +158,13 @@ initial learning rate 0.001 and a maximum of 15 head epochs were used.
 OpenVINO 2025.4.1 accelerates fixed EfficientNet features; two feature views
 (original plus one training-only augmented view) train the head.
 
-| Model | Head epochs completed | Fine-tune epochs | Confidence cutoff | Cosine-distance cutoff |
+| Model | Initial epochs completed | Fine-tune epochs | Confidence cutoff | Cosine-distance cutoff |
 |---|---:|---:|---:|---:|
 """ + "\n".join(epoch_rows) + """
 
 Exact run settings and dataset provenance are in each `training_config.json`.
+Recorded epoch totals (training plus validation, excluding setup and interrupted
+profiling): {timing_text}.
 Completed CNN epochs record elapsed seconds in history. The initial EfficientNet
 run did not record an internal duration timer. Windows execution and Ubuntu
 installation/regression checks in GitHub Actions passed; macOS and a Colab
@@ -223,6 +231,12 @@ macro scores and per-class tables should accompany overall accuracy. Examine
 confusions as hypotheses for further study, not evidence of pathogen identity.
 Grad-CAM highlights regions influencing a score and does not localize confirmed
 disease. A healthy category does not exclude unmodeled problems or latent disease.
+
+The CNN's modest closed-set score and selective acceptance coverage reflect its
+small capacity and short training budget. Its accepted-subset accuracy must not
+be confused with overall test accuracy. Temperature scaling improved the CNN's
+audit ECE but slightly worsened EfficientNet's audit ECE; calibration improvement
+is measured rather than assumed. Both outcomes are reported above.
 
 Incomplete physical-leaf identities, conservative duplicate detection, source
 label quality, controlled backgrounds and limited OOD sources constrain findings.

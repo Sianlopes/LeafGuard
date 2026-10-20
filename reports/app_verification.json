@@ -11,25 +11,25 @@
     "plant": "Apple",
     "disease": "Black rot",
     "label": "Apple___Black_rot",
-    "confidence": 0.9958753651087838,
+    "confidence": 0.995875372938304,
     "top_three": [
       {
         "label": "Apple___Black_rot",
         "plant": "Apple",
         "disease": "Black rot",
-        "confidence": 0.9958753651087838
+        "confidence": 0.995875372938304
       },
       {
         "label": "Potato___Late_blight",
         "plant": "Potato",
         "disease": "Late blight",
-        "confidence": 0.0028399422609352337
+        "confidence": 0.0028399333977631434
       },
       {
         "label": "Apple___healthy",
         "plant": "Apple",
         "disease": "healthy",
-        "confidence": 0.0005621824731113025
+        "confidence": 0.0005621842711467361
       }
     ],
     "uncertain": false,

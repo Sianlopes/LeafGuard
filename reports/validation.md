@@ -37,15 +37,18 @@ See `preparation_audit.json`, `source_audit.json`, `ood_provenance.json` and
 
 ## Software checks executed
 
-The final clean-runtime regression run passed **all 37 tests** in 59.78 seconds,
+The final clean-runtime regression run passed **all 38 tests** in 57.86 seconds,
 including actual CNN optimizer
 updates, a complete training/evaluation CLI round trip, EfficientNet graph and
 fine-tuning gradients, native Keras save/load, calibration and Grad-CAM paths,
 evaluation figures and comparison export, and all five Streamlit pages.
-The run used the complete installed environment after the real EfficientNet
-artifacts were installed. One Keras input-structure warning came from a small
+The run used the complete installed environment after both real trained and
+calibrated model bundles were installed. One Keras input-structure warning came from a small
 test graph; its inference and gradient checks passed. Separate real-artifact
 verification and the example-to-analysis app interaction also passed.
+Both native models, their calibration/prototype checksums and actual Grad-CAM
+paths passed the final real-artifact verification. The updated five-page app
+also rendered both models' metrics and comparison without exceptions.
 
 Synthetic test images, small fixture models and fixture metrics live only in
 ignored test directories; they never become app artifacts or experiment scores.
@@ -89,15 +92,27 @@ and the complete example-selection/Analyse Leaf/Grad-CAM Streamlit flow passed.
 See `integration.json` and `app_verification.json`.
 
 The user requested faster completion. The CNN baseline therefore uses a fixed
-five-epoch budget; training and comparison remain in progress. The complete
-functional EfficientNet app and its actual artifacts were published to
+five-epoch budget. That run is now complete: 59.0438% test accuracy, 0.540460
+macro F1 and 0.601233 weighted F1 on the same 10,709 held-out images. The five
+epoch timers total 36.81 minutes including validation, excluding setup and
+earlier profiling attempts. Both models' actual curves, confusion matrices,
+per-class tables and the comparison chart were generated.
+
+The CNN rejection audit also passed: 542/2,100 ID audit images accepted
+(25.8095% coverage) with 93.7269% accepted accuracy. It accepted 9/473 negatives:
+7/250 unrelated objects and 2/223 unsupported leaves, below the configured 5%
+limit in each category. The low coverage and modest closed-set score make this
+a comparison baseline; EfficientNet remains the main model. No threshold was
+changed after inspecting either audit.
+
+The complete functional EfficientNet app and its actual artifacts were published to
 https://github.com/Sianlopes/LeafGuard at commit `c86bf66` while the baseline runs.
 
 ## App review and external execution limits
 
 All five pages passed Streamlit AppTest navigation checks. A local server starts
-at http://localhost:8501. Earlier health verification returned HTTP 200 `ok`;
-the final trained app will be checked again.
+at http://localhost:8501. Health verification returned HTTP 200 `ok`; complete
+example analysis and Grad-CAM interactions passed with the actual trained model.
 
 Windows Computer Use could list Chrome, but visual inspection ended because the
 helper could not determine the current browser URL confidently enough to enforce

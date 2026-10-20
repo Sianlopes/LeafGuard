@@ -313,8 +313,12 @@ The completed EfficientNet CPU experiment achieved **96.78% test accuracy** and
 **0.9604 macro F1** on 10,709 held-out images. Its separate rejection audit
 accepted 2,047/2,100 ID images with 96.78% accepted accuracy and accepted
 0/473 negative images. These are empirical results under the dataset and OOD
-limitations documented above. The faster five-epoch CNN baseline comparison is
-being completed separately; see the report for available measured results.
+limitations documented above. The five-epoch CNN baseline achieved **59.04% test
+accuracy** and **0.5405 macro F1**. Its rejection audit accepted 542/2,100 ID
+images with 93.73% accepted accuracy and accepted 9/473 negatives (1.90%).
+The smaller baseline and unequal training budgets limit conclusions about
+architecture alone. EfficientNet is the default model. The full measured
+comparison, per-class results and audit statistics are in the project report.
 
 Choose the final model/hyperparameters using validation data, then evaluate the
 frozen checkpoints on the held-out test split:

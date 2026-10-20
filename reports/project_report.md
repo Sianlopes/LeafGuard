@@ -117,11 +117,14 @@ initial learning rate 0.001 and a maximum of 15 head epochs were used.
 OpenVINO 2025.4.1 accelerates fixed EfficientNet features; two feature views
 (original plus one training-only augmented view) train the head.
 
-| Model | Head epochs completed | Fine-tune epochs | Confidence cutoff | Cosine-distance cutoff |
+| Model | Initial epochs completed | Fine-tune epochs | Confidence cutoff | Cosine-distance cutoff |
 |---|---:|---:|---:|---:|
+| cnn | 5 | 0 | 0.8100 | 0.220618 |
 | efficientnet | 15 | 0 | 0.3500 | 0.369049 |
 
 Exact run settings and dataset provenance are in each `training_config.json`.
+Recorded epoch totals (training plus validation, excluding setup and interrupted
+profiling): {timing_text}.
 Completed CNN epochs record elapsed seconds in history. The initial EfficientNet
 run did not record an internal duration timer. Windows execution and Ubuntu
 installation/regression checks in GitHub Actions passed; macOS and a Colab
@@ -135,9 +138,24 @@ weights by test support. These are closed-set scores before rejection.
 
 | Model | Accuracy | Macro precision | Macro recall | Macro F1 | Weighted F1 |
 |---|---:|---:|---:|---:|---:|
+| cnn | 59.04% | 60.65% | 61.11% | 54.05% | 60.12% |
 | efficientnet | 96.78% | 95.74% | 96.40% | 96.04% | 96.78% |
 
-The main EfficientNet experiment is complete. CNN training and its comparison remain in progress; no baseline scores have been invented.
+EfficientNetB0 macro F1 differs from the compact CNN by +41.99 percentage points. This is a descriptive comparison of two predefined runs on the same manifest, not a test-driven hyperparameter search. The CNN uses a shorter five-epoch CPU budget at the user's request for faster completion; the unequal budgets and capacities limit conclusions about architecture alone.
+
+![Model comparison](figures/comparison.png)
+
+![cnn training accuracy](figures/cnn/accuracy.png)
+
+![cnn validation accuracy](figures/cnn/val_accuracy.png)
+
+![cnn training loss](figures/cnn/loss.png)
+
+![cnn validation loss](figures/cnn/val_loss.png)
+
+![cnn confusion matrix](figures/cnn/confusion_matrix.png)
+
+![cnn per-class recall](figures/cnn/per_class_recall.png)
 
 ![efficientnet training accuracy](figures/efficientnet/accuracy.png)
 
@@ -155,6 +173,7 @@ Completed evaluations have all six individual figures in their folders.
 Machine-readable classification reports, per-class support and full confusion
 matrices are in `reports/metrics/`. Checkpoint SHA-256 values:
 
+* cnn: `b32f95da0f1d301a4175c3ca2a5c64a454108a2907668fe010192ac46ef4c99b`.
 * efficientnet: `847d17ffe4296129d78e8b00dce4d71ef3d2ce3e09dfb0c7a8ed4a57147a274a`.
 
 ## 9. Calibration and rejection audit
@@ -180,8 +199,10 @@ collections do not represent every unknown field plant or object.
 
 | Model | Audit passed | ID coverage | Accepted ID accuracy | OOD acceptance | Temperature |
 |---|---|---:|---:|---:|---:|
+| cnn | True | 25.81% | 93.73% | 1.90% | 0.8893 |
 | efficientnet | True | 97.48% | 96.78% | 0.00% | 0.7487 |
 
+* cnn: ID audit n=2100, accepted=542; ECE 0.06226 before and 0.03182 after scaling; unrelated_objects: 7/250 negatives accepted; unsupported_leaves: 2/223 negatives accepted.
 * efficientnet: ID audit n=2100, accepted=2047; ECE 0.00821 before and 0.01224 after scaling; unrelated_objects: 0/250 negatives accepted; unsupported_leaves: 0/223 negatives accepted.
 
 See each `calibration.json` for sources, fit/tune/audit counts, thresholds,
@@ -197,6 +218,12 @@ macro scores and per-class tables should accompany overall accuracy. Examine
 confusions as hypotheses for further study, not evidence of pathogen identity.
 Grad-CAM highlights regions influencing a score and does not localize confirmed
 disease. A healthy category does not exclude unmodeled problems or latent disease.
+
+The CNN's modest closed-set score and selective acceptance coverage reflect its
+small capacity and short training budget. Its accepted-subset accuracy must not
+be confused with overall test accuracy. Temperature scaling improved the CNN's
+audit ECE but slightly worsened EfficientNet's audit ECE; calibration improvement
+is measured rather than assumed. Both outcomes are reported above.
 
 Incomplete physical-leaf identities, conservative duplicate detection, source
 label quality, controlled backgrounds and limited OOD sources constrain findings.
@@ -234,4 +261,4 @@ external evaluation before practical deployment.
 8. Krizhevsky. CIFAR-10. https://www.cs.toronto.edu/~kriz/cifar.html
 9. Category-specific agricultural references: `data/disease_info.json`.
 
-Generated from completed artifacts at 2026-10-20T09:05:36.968887+00:00.
+Generated from completed artifacts at 2026-10-20T10:07:36.682605+00:00.

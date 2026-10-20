@@ -3,6 +3,119 @@
   "samples": 38,
   "sampling": "First manifest test image per class; verification only, no policy changes",
   "models": {
+    "cnn": {
+      "model_sha256": "b32f95da0f1d301a4175c3ca2a5c64a454108a2907668fe010192ac46ef4c99b",
+      "parameters": 13798,
+      "full_tensorflow_output_valid": true,
+      "first_test_example": {
+        "source_filename": "1cb869ea-0a4c-47d7-9def-a88c16b72ddc___FREC_Scab 3350.JPG",
+        "actual": "Apple___Apple_scab",
+        "result": {
+          "plant": null,
+          "disease": null,
+          "label": null,
+          "confidence": 0.42713938082716085,
+          "top_three": [
+            {
+              "label": "Apple___Apple_scab",
+              "plant": "Apple",
+              "disease": "Apple scab",
+              "confidence": 0.42713938082716085
+            },
+            {
+              "label": "Strawberry___healthy",
+              "plant": "Strawberry",
+              "disease": "healthy",
+              "confidence": 0.14390449931836322
+            },
+            {
+              "label": "Apple___Black_rot",
+              "plant": "Apple",
+              "disease": "Black rot",
+              "confidence": 0.09210621333850272
+            }
+          ],
+          "uncertain": true,
+          "message": "Unable to identify this leaf reliably. Try uploading a clearer image or a leaf from a supported plant species.",
+          "calibrated": true,
+          "rejection_validated": true,
+          "threshold": 0.81,
+          "embedding_distance": 0.044170260429382324,
+          "disease_info": null,
+          "predicted_index": 0,
+          "model": "cnn"
+        }
+      },
+      "gradcam": {
+        "positive_influence": true,
+        "file": "reports\\figures\\cnn\\gradcam_example.png",
+        "source": "PlantVillage, Mohanty/Hughes/Salathe; CC BY-SA 3.0",
+        "filename": "1cb869ea-0a4c-47d7-9def-a88c16b72ddc___FREC_Scab 3350.JPG"
+      },
+      "ood_examples": [
+        {
+          "category": "unsupported_leaves",
+          "source_filename": "iPAD2_C01_EX01.png",
+          "uncertain": true,
+          "confidence": 0.7148032561983785
+        },
+        {
+          "category": "unsupported_leaves",
+          "source_filename": "iPAD2_C01_EX02.png",
+          "uncertain": true,
+          "confidence": 0.5819762967716812
+        },
+        {
+          "category": "unsupported_leaves",
+          "source_filename": "iPAD2_C01_EX03.png",
+          "uncertain": true,
+          "confidence": 0.5129265966140212
+        },
+        {
+          "category": "unsupported_leaves",
+          "source_filename": "iPAD2_C01_EX04.png",
+          "uncertain": true,
+          "confidence": 0.8814433433211974
+        },
+        {
+          "category": "unsupported_leaves",
+          "source_filename": "iPAD2_C01_EX05.png",
+          "uncertain": true,
+          "confidence": 0.9259379218379398
+        },
+        {
+          "category": "unrelated_objects",
+          "source_filename": "test_1686.png",
+          "uncertain": true,
+          "confidence": 0.24245996615844015
+        },
+        {
+          "category": "unrelated_objects",
+          "source_filename": "test_2098.png",
+          "uncertain": true,
+          "confidence": 0.347104958463288
+        },
+        {
+          "category": "unrelated_objects",
+          "source_filename": "test_2110.png",
+          "uncertain": true,
+          "confidence": 0.3835904572588872
+        },
+        {
+          "category": "unrelated_objects",
+          "source_filename": "test_2548.png",
+          "uncertain": false,
+          "confidence": 0.9678742998365208
+        },
+        {
+          "category": "unrelated_objects",
+          "source_filename": "test_2956.png",
+          "uncertain": true,
+          "confidence": 0.37534524545421
+        }
+      ],
+      "calibration_validated": true
+    },
     "efficientnet": {
       "model_sha256": "847d17ffe4296129d78e8b00dce4d71ef3d2ce3e09dfb0c7a8ed4a57147a274a",
       "parameters": 4098249,
