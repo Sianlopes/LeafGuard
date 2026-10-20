@@ -1,12 +1,10 @@
 import streamlit as st
 import pandas as pd
-from src.ui import setup, dataset_metadata, installed_classes
+from src.ui import setup, dataset_metadata, installed_classes, page_heading
 from src.common import parse_label
 
 setup("Supported plants")
-st.markdown('<div class="eyebrow">The training catalogue</div>', unsafe_allow_html=True)
-st.title("Know the model's growing ground.")
-st.write("Browse the plant-health categories available in the actual project metadata.")
+page_heading("The training catalogue", "Know the model’s growing ground.", "Explore the supported crops and plant-health categories. Every count comes from the actual project metadata.")
 metadata = dataset_metadata()
 classes, source = installed_classes()
 if metadata:
@@ -23,12 +21,14 @@ else:
     st.stop()
 table["Plant"] = table["label"].map(lambda c: parse_label(c)[0])
 table["Category"] = table["label"].map(lambda c: parse_label(c)[1])
-query = st.text_input("Search plants or categories", placeholder="Try potato, apple, rust…")
+query = st.text_input("Search plants or categories", placeholder="Try potato, apple, rust…", icon=":material/search:")
 filtered = table[table["Plant"].str.contains(query, case=False, regex=False) | table["Category"].str.contains(query, case=False, regex=False)]
 st.caption(f"{filtered['Plant'].nunique()} plants · {len(filtered)} categories match")
+if filtered.empty:
+    st.info("No matching categories. Try another crop name or symptom, or clear your search.")
 for plant in sorted(filtered["Plant"].unique()):
-    rows = table[table["Plant"] == plant]
-    with st.expander(f"{plant} · {len(rows)} classifications", expanded=bool(query)):
+    rows = filtered[filtered["Plant"] == plant]
+    with st.expander(f"{plant} · {len(rows)} classifications", expanded=bool(query), icon=":material/eco:"):
         a, b, c = st.columns(3)
         a.metric("Training images", f"{int(rows['train'].sum()):,}" if metadata else "Unavailable")
         b.metric("Disease / pest categories", int((rows["Category"].str.lower() != "healthy").sum()))

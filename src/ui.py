@@ -1,45 +1,63 @@
 """Shared Streamlit presentation and metadata access."""
-import os
+from html import escape
 from pathlib import Path
 import streamlit as st
-from src.common import ROOT, read_json, model_directory, parse_label
+from src.common import ROOT, read_json, model_directory
+
+
+def icon(name, size=20):
+    """Small, consistent outline icons; decorative alongside visible labels."""
+    paths = {
+        "leaf": '<path d="M20 4c-8-1-15 2-15 9a6 6 0 0 0 6 6c7 0 10-7 9-15Z"/><path d="M4 21 15 10M9 16v-5m0 5h5"/>',
+        "scan": '<path d="M8 3H4a1 1 0 0 0-1 1v4m13-5h4a1 1 0 0 1 1 1v4M3 16v4a1 1 0 0 0 1 1h4m8 0h4a1 1 0 0 0 1-1v-4M7 12h10"/><path d="M12 7v10"/>',
+        "image": '<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
+        "review": '<path d="M9 5H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-4"/><rect x="9" y="2" width="6" height="6" rx="2"/><path d="m8 15 3 3 5-6"/>',
+    }
+    return f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{paths[name]}</svg>'
+
+
+def page_heading(eyebrow, title, description):
+    st.markdown(f'<div class="page-heading"><div class="eyebrow">{escape(eyebrow)}</div><h1>{escape(title)}</h1><p>{escape(description)}</p></div>', unsafe_allow_html=True)
+
+
+def panel_heading(number, title, description=None):
+    st.markdown(f'<div class="panel-heading"><span class="panel-number">{escape(number)}</span><h3>{escape(title)}</h3></div>' + (f'<p class="panel-description">{escape(description)}</p>' if description else ''), unsafe_allow_html=True)
+
+
+def chart_style(figure):
+    """Keep Plotly panels in the same visual language as the rest of the app."""
+    figure.update_layout(font=dict(family="Inter, Segoe UI, sans-serif", color="#617068", size=12), title_font=dict(size=16, color="#202e28"), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", legend=dict(orientation="h", y=1.12, x=0), hoverlabel=dict(bgcolor="#ffffff", font_color="#202e28"))
+    figure.update_xaxes(gridcolor="#e7ece4", zerolinecolor="#e7ece4")
+    figure.update_yaxes(gridcolor="#e7ece4", zerolinecolor="#e7ece4")
+    return figure
 
 
 def setup(title):
-    st.set_page_config(page_title=f"{title} · LeafGuard AI", page_icon="🌿", layout="wide", initial_sidebar_state="expanded")
-    st.markdown("""<style>
-    .block-container{max-width:1240px;padding-top:2.5rem;padding-bottom:3rem}
-    h1,h2,h3{letter-spacing:-.035em} h1{font-size:2.7rem!important;line-height:1.12!important}
-    [data-testid="stSidebar"]{border-right:1px solid #dfe9de}
-    [data-testid="stMetric"]{background:#eef5ed;border:1px solid #dfe9de;border-radius:15px;padding:18px}
-    [data-testid="stMetricLabel"]{color:#4b6657}
-    .eyebrow{font-size:.75rem;text-transform:uppercase;letter-spacing:.16em;color:#477357;font-weight:700;margin-bottom:16px}
-    .hero{padding:38px 40px;background:linear-gradient(115deg,#e8f1e3,#f5f8ef);border:1px solid #d5e2ce;border-radius:24px;margin-bottom:24px}
-    .hero p{max-width:740px;font-size:1.08rem;line-height:1.7;color:#4b6657}
-    .note{font-size:.9rem;color:#57715f;line-height:1.6}
-    .step{font-family:monospace;color:#6e916d;font-size:1.1rem;margin-bottom:12px}
-    [data-testid="stFileUploader"]{border-radius:16px}
-    .stButton button,.stDownloadButton button{border-radius:10px;min-height:2.7rem}
-    </style>""", unsafe_allow_html=True)
+    st.set_page_config(page_title=f"{title} · LeafGuard AI", page_icon=":material/eco:", layout="wide", initial_sidebar_state="auto")
+    st.markdown(f'<style>{(ROOT / "assets/styles.css").read_text(encoding="utf-8")}</style>', unsafe_allow_html=True)
     with st.sidebar:
-        st.markdown("## 🌿 LeafGuard AI")
-        st.caption("A closer look at plant health")
-        st.divider()
-        st.page_link("app.py", label="Overview", icon="🏡")
-        st.page_link("pages/1_Detect_Disease.py", label="Disease detection", icon="🔎")
-        st.page_link("pages/2_Supported_Plants.py", label="Supported plants", icon="🌱")
-        st.page_link("pages/3_Model_Performance.py", label="Model performance", icon="📊")
-        st.page_link("pages/4_About.py", label="About the project", icon="📖")
-        st.divider()
-        st.caption("Academic research project\n\nPlantVillage · CNN + EfficientNetB0")
-        st.caption("AI suggestions support observation. They do not confirm a laboratory diagnosis.")
+        st.markdown(f'<div class="brand"><div class="brand-mark">{icon("leaf", 23)}</div><div><div class="brand-name">LeafGuard <span>AI</span></div><div class="brand-subtitle">A closer look at plant health</div></div></div><div class="nav-label">Workspace</div>', unsafe_allow_html=True)
+        with st.container(key="sidebar_navigation"):
+            for page, label, symbol in [
+                ("app.py", "Overview", "space_dashboard"),
+                ("pages/1_Detect_Disease.py", "Disease detection", "frame_inspect"),
+                ("pages/2_Supported_Plants.py", "Supported plants", "eco"),
+                ("pages/3_Model_Performance.py", "Model performance", "monitoring"),
+                ("pages/4_About.py", "About the project", "auto_stories"),
+            ]:
+                if label == title:
+                    with st.container(key="active_navigation"):
+                        st.page_link(page, label=label, icon=f":material/{symbol}:", width="stretch")
+                else:
+                    st.page_link(page, label=label, icon=f":material/{symbol}:", width="stretch")
+        st.markdown('<div class="sidebar-note"><strong>Built for informed observation</strong><br>Academic research · PlantVillage<br>CNN + EfficientNetB0<br><br>AI suggestions support observation. They do not confirm a laboratory diagnosis.</div>', unsafe_allow_html=True)
 
 
 def choose_model():
     directories = sorted({p.parent for p in (ROOT / "models").glob("*/inference_config.json")} | {model_directory()})
     current = model_directory().resolve()
     values = sorted({str(p.resolve()) for p in directories})
-    return Path(st.selectbox("Model artifacts", values, index=values.index(str(current)) if str(current) in values else 0, format_func=lambda p: Path(p).name))
+    return Path(st.selectbox("Analysis model", values, index=values.index(str(current)) if str(current) in values else 0, format_func=lambda p: {"efficientnet": "EfficientNetB0", "cnn": "Custom CNN"}.get(Path(p).name, Path(p).name), width=340))
 
 
 def dataset_metadata():

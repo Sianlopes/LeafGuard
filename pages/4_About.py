@@ -1,10 +1,8 @@
 import streamlit as st
-from src.ui import setup
+from src.ui import setup, page_heading
 
 setup("About the project")
-st.markdown('<div class="eyebrow">Research & methodology</div>', unsafe_allow_html=True)
-st.title("A practical study in plant vision.")
-st.write("LeafGuard AI is an academic project exploring multi-crop leaf classification with deep learning, reproducible evaluation and explicit uncertainty.")
+page_heading("Research & methodology", "A practical study in plant vision.", "LeafGuard AI explores multi-crop leaf classification with deep learning, reproducible evaluation, and explicit uncertainty.")
 left, right = st.columns([1.5, 1], gap="large")
 with left:
     st.subheader("The problem")
@@ -12,15 +10,16 @@ with left:
     st.subheader("The objectives")
     st.write("Train a custom CNN and an ImageNet-pretrained EfficientNetB0 independently; compare held-out performance; expose real predictions through an accessible interface; and clearly reject uncertain assessments.")
     st.subheader("Two approaches to visual learning")
-    with st.expander("Custom CNN baseline", expanded=True):
+    with st.expander("Custom CNN baseline", expanded=True, icon=":material/grid_view:"):
         st.write("Three convolution–batch-normalisation–ReLU–pooling blocks learn local patterns, followed by a final convolution, global average pooling, dropout and a softmax classifier. Internal rescaling converts RGB pixels to [0,1].")
-    with st.expander("EfficientNetB0 transfer learning", expanded=True):
+    with st.expander("EfficientNetB0 transfer learning", expanded=True, icon=":material/hub:"):
         st.write("ImageNet features are initially frozen while the new classification head trains. Optional fine-tuning unfreezes selected deeper layers at a lower learning rate while keeping batch normalisation statistics frozen. Keras EfficientNet includes its own preprocessing and receives RGB values in [0,255].")
     st.subheader("From data to evidence")
     st.write("The preparation pipeline discovers classes, validates images and groups available physical-leaf IDs, exact pixel duplicates and conservative near-duplicates. When source groups cross splits, held-out observations are retained and matching training observations are excluded. Some source records lack physical-leaf IDs, so complete physical-leaf independence cannot be verified. Augmentation applies only to training. Validation loss selects checkpoints; reserved calibration groups support temperature scaling and rejection checks; the test partition supports final evaluation.")
     st.write("Evaluation reports accuracy, macro precision and recall, macro and weighted F1, per-class results and a confusion matrix. Optional Grad-CAM highlights regions influencing a class score, without establishing where disease is located.")
 with right:
-    with st.container(border=True):
+    with st.container(border=True, key="dataset_card"):
+        st.markdown('<div class="research-label">The source material</div>', unsafe_allow_html=True)
         st.markdown("### Dataset")
         st.write("PlantVillage contains approximately 54,000 original leaf images across 14 crop species and 38 categories in its commonly used color release. The app's catalogue and counts come from actual prepared metadata.")
         st.markdown("[PlantVillage source](https://huggingface.co/datasets/mohanty/PlantVillage)")

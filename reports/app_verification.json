@@ -6,30 +6,31 @@
     "pages/3_Model_Performance.py": "passed",
     "pages/4_About.py": "passed"
   },
+  "catalogue_search_and_empty_state": true,
   "no_prediction_before_analysis": true,
   "example_analysis": {
     "plant": "Apple",
     "disease": "Black rot",
     "label": "Apple___Black_rot",
-    "confidence": 0.995875372938304,
+    "confidence": 0.995875381063131,
     "top_three": [
       {
         "label": "Apple___Black_rot",
         "plant": "Apple",
         "disease": "Black rot",
-        "confidence": 0.995875372938304
+        "confidence": 0.995875381063131
       },
       {
         "label": "Potato___Late_blight",
         "plant": "Potato",
         "disease": "Late blight",
-        "confidence": 0.0028399333977631434
+        "confidence": 0.002839925869033092
       },
       {
         "label": "Apple___healthy",
         "plant": "Apple",
         "disease": "healthy",
-        "confidence": 0.0005621842711467361
+        "confidence": 0.0005621853391321246
       }
     ],
     "uncertain": false,
@@ -56,5 +57,6 @@
     "predicted_index": 1,
     "model": "efficientnet"
   },
-  "gradcam_toggle_without_exception": true
+  "gradcam_toggle_without_exception": true,
+  "changed_image_hides_stale_assessment": true
 }

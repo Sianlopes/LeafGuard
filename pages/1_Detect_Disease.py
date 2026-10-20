@@ -2,23 +2,17 @@ import hashlib
 import json
 import streamlit as st
 import plotly.express as px
-from src.ui import setup, choose_model, model_help
+from src.ui import setup, choose_model, model_help, page_heading, panel_heading, icon, chart_style
 from src.preprocessing import load_image
 from src.inference import Predictor, ModelUnavailableError
 from src.common import ROOT, read_json
 
 setup("Disease detection")
-st.markdown('<div class="eyebrow">Leaf image analysis</div>', unsafe_allow_html=True)
-st.title("What is your leaf showing?")
-st.write("Upload one leaf, then analyse it to see the model's assessment and alternatives.")
-model_dir = choose_model()
-ready = all((model_dir / name).exists() for name in ("best.keras", "class_names.json", "inference_config.json"))
-if not ready:
-    model_help()
-with st.expander("Tips for a useful image"):
-    st.write("Use a sharp, well-lit photograph of one leaf. Fill most of the frame with the leaf, keep the background simple, and avoid filters. Supported uploads: JPG, JPEG and PNG up to 10 MB.")
-left, right = st.columns([1, 1.25], gap="large")
-with left:
+page_heading("Leaf image analysis", "What is your leaf showing?", "One clear image. A closer look at possible causes, model confidence, and what to consider next.")
+with st.container(key="detection_workspace"):
+    left, right = st.columns([1, 1.3], gap="medium")
+with left, st.container(border=True, key="detection_input"):
+    panel_heading("01", "Your leaf image", "Start with one leaf in clear, even light.")
     uploaded = st.file_uploader("Upload a leaf image", type=["jpg", "jpeg", "png"])
     example_manifest = ROOT / "data/examples/manifest.json"
     examples = read_json(example_manifest)["images"] if example_manifest.exists() else []
@@ -35,9 +29,17 @@ with left:
             st.image(image, caption="Selected leaf image", width="stretch")
         except ValueError as exc:
             st.error(str(exc))
-    heatmap_enabled = st.checkbox("Show Grad-CAM explanation", value=False)
-    threshold = st.slider("Minimum confidence", min_value=.5, max_value=.99, value=.8, step=.01, help="Can only make a validated rejection policy stricter. Confidence alone cannot validate an unknown image.")
-    analyse = st.button("Analyse Leaf", type="primary", disabled=image is None or not ready, width="stretch")
+    with st.expander("Tips for a useful image", icon=":material/lightbulb:"):
+        st.write("Use a sharp, well-lit photograph of one leaf. Fill most of the frame with the leaf, keep the background simple, and avoid filters. Supported uploads: JPG, JPEG and PNG up to 10 MB.")
+    st.divider()
+    model_dir = choose_model()
+    ready = all((model_dir / name).exists() for name in ("best.keras", "class_names.json", "inference_config.json"))
+    if not ready:
+        model_help()
+    with st.expander("Analysis settings", icon=":material/tune:"):
+        heatmap_enabled = st.checkbox("Show Grad-CAM explanation", value=False)
+        threshold = st.slider("Minimum confidence", min_value=.5, max_value=.99, value=.8, step=.01, help="Can only make a validated rejection policy stricter. Confidence alone cannot validate an unknown image.")
+    analyse = st.button("Analyse Leaf", type="primary", disabled=image is None or not ready, width="stretch", icon=":material/frame_inspect:")
     st.caption("Images are processed in this running app. They are not added to the training dataset.")
 signature = hashlib.sha256(source_bytes + str(model_dir).encode() + str(threshold).encode()).hexdigest() if source_bytes is not None and image is not None else None
 if analyse:
@@ -55,12 +57,11 @@ if analyse:
         with right:
             st.error(str(exc))
 saved = st.session_state.get("leaf_analysis")
-with right:
+with right, st.container(border=True, key="assessment"):
+    panel_heading("02", "Your assessment", "Model evidence to support your observation.")
     if not saved or saved["signature"] != signature or signature is None:
         if not analyse:
-            with st.container(border=True):
-                st.markdown("### Your assessment will appear here")
-                st.write("Upload an image and select **Analyse Leaf**. You'll see the leading categories, model confidence, and any available guidance.")
+            st.markdown(f'<div class="empty-state"><div class="icon-tile">{icon("scan", 28)}</div><h3>A clearer picture starts here.</h3><p>Upload a leaf or try an example, then select <strong>Analyse Leaf</strong> to see the leading categories and available guidance.</p><p class="empty-meta">Categories · Confidence · Next steps</p></div>', unsafe_allow_html=True)
     else:
         result = saved["result"]
         if result["uncertain"]:
@@ -77,10 +78,10 @@ with right:
         st.caption("Temperature-scaled model probability" if result["calibrated"] else "Uncalibrated softmax probability; high values can occur on unrelated images.")
         st.markdown("#### Top model candidates")
         top = result["top_three"]
-        figure = px.bar(x=[row["confidence"] for row in top], y=[f"{row['plant']} · {row['disease']}" for row in top], orientation="h", text=[f"{row['confidence']:.1%}" for row in top], color_discrete_sequence=["#43835b"])
+        figure = px.bar(x=[row["confidence"] for row in top], y=[f"{row['plant']} · {row['disease']}" for row in top], orientation="h", text=[f"{row['confidence']:.1%}" for row in top], color_discrete_sequence=["#4b7b59"])
         figure.update_layout(xaxis=dict(range=[0, 1], tickformat=".0%", title="Model probability"), yaxis=dict(title="", autorange="reversed"), margin=dict(l=0, r=30, t=10, b=10), height=260, plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)", showlegend=False)
-        st.plotly_chart(figure, width="stretch")
-        st.download_button("Download analysis JSON", json.dumps(result, indent=2), file_name="leafguard_analysis.json", mime="application/json")
+        st.plotly_chart(chart_style(figure), width="stretch")
+        st.download_button("Download analysis JSON", json.dumps(result, indent=2), file_name="leafguard_analysis.json", mime="application/json", icon=":material/download:")
         info = result["disease_info"]
         if info:
             st.divider()
