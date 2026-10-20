@@ -66,6 +66,13 @@ physical RAM was available during that run. Input buffering was bounded, and
 training resumed with one job at a time. No partial CNN checkpoint or random
 ImageNet classification head is installed as a plant-disease model.
 
+CPU profiling found augmentation limited by a single input-operation thread.
+The final pipeline uses a bounded four-thread input pool and prefetches one
+augmented batch while the optimizer processes the previous batch. Observed CNN
+training improved from approximately 1.1 seconds per batch to 0.34 seconds,
+without reducing the dataset or input resolution. Earlier unfinished baseline
+attempts were discarded before producing any published metrics.
+
 EfficientNet completed all 15 classification-head epochs with its ImageNet
 backbone frozen. The best validation-loss checkpoint achieved 96.7784% accuracy
 and 0.960406 macro F1 on all 10,709 held-out test images. Evaluation reused verified
@@ -101,6 +108,8 @@ Ubuntu dependency installation, all regression tests and compilation passed in
 GitHub Actions run 39397568139 after publication. A fresh remote checkout also
 preserved every model/class/prototype checksum and included all 38 classes,
 without raw data or feature caches. Windows and Ubuntu checks are verified.
+The complete real example-analysis and Grad-CAM app flow also passed on Ubuntu
+in run 39398251487.
 
 Execution inside Google Colab, macOS, GPU training and independent field
 validation have not been performed. The output-free Colab notebook implements

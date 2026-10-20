@@ -52,7 +52,8 @@ def main():
             tf.keras.layers.RandomZoom(.1, seed=args.seed + 2),
             tf.keras.layers.RandomContrast(.1, seed=args.seed + 3),
         ])
-        train = train.map(lambda x, y: (tf.clip_by_value(augmentation(x, training=True), 0., 255.), y))
+        # Overlap one augmented batch with optimization without unbounded buffers.
+        train = train.map(lambda x, y: (tf.clip_by_value(augmentation(x, training=True), 0., 255.), y)).prefetch(1)
         compile_model(model, args.learning_rate)
         class_weights = None
         if args.class_weight == "balanced":

@@ -431,7 +431,7 @@ def tf_dataset(rows, size=224, batch_size=32, training=False, seed=42):
     # training jobs can exhaust physical RAM and make paging dominate execution.
     options = tf.data.Options()
     options.threading.private_threadpool_size = 4
-    options.threading.max_intra_op_parallelism = 1
+    options.threading.max_intra_op_parallelism = 4
     return dataset.map(decode, num_parallel_calls=4).batch(batch_size).prefetch(1).with_options(options)
 
 

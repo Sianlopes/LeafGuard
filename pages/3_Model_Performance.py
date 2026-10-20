@@ -11,7 +11,7 @@ st.markdown('<div class="eyebrow">Measured, not assumed</div>', unsafe_allow_htm
 st.title("Evidence behind the assessment.")
 st.write("These panels read saved held-out test evaluations. Model selection uses validation loss.")
 metrics_dir = ROOT / "reports/metrics"
-available = [name for name in ("cnn", "efficientnet") if (metrics_dir / f"{name}.json").exists()]
+available = [name for name in ("efficientnet", "cnn") if (metrics_dir / f"{name}.json").exists()]
 if not available:
     st.info("Evaluation results are unavailable. Train a model and run evaluate.py to populate this page. No experimental results have been invented.")
     st.code("python evaluate.py --model-dir models/cnn\npython evaluate.py --model-dir models/efficientnet", language="bash")
