@@ -82,8 +82,9 @@ and the complete example-selection/Analyse Leaf/Grad-CAM Streamlit flow passed.
 See `integration.json` and `app_verification.json`.
 
 The user requested faster completion. The CNN baseline therefore uses a fixed
-five-epoch budget; training and comparison remain in progress. GitHub publication
-is being prepared with the complete functional EfficientNet bundle first.
+five-epoch budget; training and comparison remain in progress. The complete
+functional EfficientNet app and its actual artifacts were published to
+https://github.com/Sianlopes/LeafGuard at commit `c86bf66` while the baseline runs.
 
 ## App review and external execution limits
 
@@ -96,7 +97,12 @@ helper could not determine the current browser URL confidently enough to enforce
 its policy. Desktop interaction stopped at that point. No visual-browser QA is
 claimed. The separate browser connector also had no available browser provider.
 
-Execution inside Google Colab, macOS/Linux, GPU training and independent field
+Ubuntu dependency installation, all regression tests and compilation passed in
+GitHub Actions run 39397568139 after publication. A fresh remote checkout also
+preserved every model/class/prototype checksum and included all 38 classes,
+without raw data or feature caches. Windows and Ubuntu checks are verified.
+
+Execution inside Google Colab, macOS, GPU training and independent field
 validation have not been performed. The output-free Colab notebook implements
 source acquisition, full data preparation, both training runs, evaluation,
 optional real negative calibration and portable artifact packaging; local

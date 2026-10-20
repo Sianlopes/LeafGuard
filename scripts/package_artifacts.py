@@ -14,7 +14,11 @@ def main():
     if not checkpoints:
         parser.error("No trained model exists; train at least one architecture first.")
     files = []
-    for directory in (ROOT / "models", ROOT / "reports/metrics", ROOT / "reports/figures"):
+    for directory in sorted({path.parent for path in checkpoints}):
+        if not all((directory / name).exists() for name in ("class_names.json", "inference_config.json")):
+            continue  # A checkpoint from an unfinished run is not a deployable bundle.
+        files.extend(p for p in directory.iterdir() if p.is_file() and p.suffix in {".keras", ".json", ".csv", ".npz"})
+    for directory in (ROOT / "reports/metrics", ROOT / "reports/figures"):
         files.extend(p for p in directory.rglob("*") if p.is_file() and p.suffix in {".keras", ".json", ".csv", ".png", ".npz"})
     for name in ("summary.csv", "metadata.json", "class_names.json"):
         path = ROOT / "data/processed" / name

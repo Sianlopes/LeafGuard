@@ -157,8 +157,10 @@ OpenVINO 2025.4.1 accelerates fixed EfficientNet features; two feature views
 """ + "\n".join(epoch_rows) + """
 
 Exact run settings and dataset provenance are in each `training_config.json`.
-Training duration was not recorded by an internal epoch timer. Installation and
-execution inside macOS/Linux or Colab were not verified on this Windows host.
+Completed CNN epochs record elapsed seconds in history. The initial EfficientNet
+run did not record an internal duration timer. Windows execution and Ubuntu
+installation/regression checks in GitHub Actions passed; macOS and a Colab
+runtime were not executed here.
 
 ## 8. Evaluation protocol and results
 

@@ -54,6 +54,9 @@ virtual environment that inherits unrelated packages. Older TensorFlow 2.18
 pins do not support Python 3.13 and must not be mixed into this environment.
 
 CPU training and inference work without CUDA. `--cpu` explicitly disables GPUs.
+Windows execution is verified locally; the pinned environment and regression
+suite also passed on Ubuntu in GitHub Actions. macOS and a Colab runtime were
+not executed here.
 Native Windows TensorFlow 2.21 runs on CPU; use WSL2/Linux or Colab for NVIDIA
 acceleration. On supported Linux/WSL installations, install
 `python -m pip install "tensorflow[and-cuda]==2.21.0"` after the requirements.
@@ -214,6 +217,9 @@ Train each architecture independently:
 python train.py --model cnn --epochs 15
 python train.py --model efficientnet --epochs 15 --fine-tune-epochs 10
 ```
+
+The local baseline uses `python train.py --model cnn --epochs 5 --threads 6 --cpu`
+for faster completion. The main EfficientNet head completed all 15 epochs.
 
 To reproduce the CPU EfficientNet experiment efficiently:
 
@@ -411,8 +417,8 @@ app's models, disease results or published metrics.
 
 See `reports/validation.md` for what was actually executed in the build
 environment. See `reports/project_report.md` for the academic report and measured
-experimental results. Windows execution was verified locally; macOS/Linux and
-execution inside a Google Colab runtime were not verified here.
+experimental results. Windows and Ubuntu checks passed; macOS and execution
+inside a Google Colab runtime were not verified here.
 
 ## Limitations and future scope
 

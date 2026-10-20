@@ -122,8 +122,10 @@ OpenVINO 2025.4.1 accelerates fixed EfficientNet features; two feature views
 | efficientnet | 15 | 0 | 0.3500 | 0.369049 |
 
 Exact run settings and dataset provenance are in each `training_config.json`.
-Training duration was not recorded by an internal epoch timer. Installation and
-execution inside macOS/Linux or Colab were not verified on this Windows host.
+Completed CNN epochs record elapsed seconds in history. The initial EfficientNet
+run did not record an internal duration timer. Windows execution and Ubuntu
+installation/regression checks in GitHub Actions passed; macOS and a Colab
+runtime were not executed here.
 
 ## 8. Evaluation protocol and results
 
@@ -232,4 +234,4 @@ external evaluation before practical deployment.
 8. Krizhevsky. CIFAR-10. https://www.cs.toronto.edu/~kriz/cifar.html
 9. Category-specific agricultural references: `data/disease_info.json`.
 
-Generated from completed artifacts at 2026-10-20T08:58:16.835126+00:00.
+Generated from completed artifacts at 2026-10-20T09:05:36.968887+00:00.
